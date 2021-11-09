@@ -151,7 +151,7 @@ public class AddContact extends PersonDetail {
 
     public void writeIntoFile(Hashtable<Integer, ArrayList<AddContact>> hashtableCopy) throws IOException, ClassNotFoundException {
         try {
-            FileWriter fileWriter = new FileWriter("IOoperation.csv");
+            FileWriter fileWriter = new FileWriter("IOoperation.JSON");
             String stream = String.valueOf(hashtableCopy);
             fileWriter.write(stream);
             fileWriter.close();
@@ -162,7 +162,7 @@ public class AddContact extends PersonDetail {
 
     public static void readFromFile() {
         try {
-            FileReader fileReader = new FileReader("IOoperation.csv");
+            FileReader fileReader = new FileReader("IOoperation.JSON");
             int i;
             while ((i = fileReader.read()) != -1) {
                 System.out.print((char) i);
