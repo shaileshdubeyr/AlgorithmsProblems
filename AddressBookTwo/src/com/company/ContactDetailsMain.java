@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.Hashtable;
 
 public class ContactDetailsMain {
-     static Hashtable<Integer, ArrayList<AddContact>> hashTable = new Hashtable<Integer, ArrayList<AddContact>>();
+    static Hashtable<Integer, ArrayList<AddContact>> hashTable = new Hashtable<Integer, ArrayList<AddContact>>();
 
     private static char inputCharater() {
         Scanner scanCharater = new Scanner(System.in);
@@ -31,8 +31,8 @@ public class ContactDetailsMain {
             while (true) {
                 addPersonDetails = new AddContact();
                 System.out.printf("Input the Charater A to add Details " +
-                                  "E to Edit details D to delete details\n" +
-                                  "Any charater to end the details Entry :- ");
+                        "E to Edit details D to delete details\n" +
+                        "Any charater to end the details Entry :- ");
                 char charater = inputCharater();
                 if (charater == 'A' || charater == 'E' || charater == 'D' || charater == 'a' || charater == 'e'
                         || charater == 'd') {
@@ -40,10 +40,9 @@ public class ContactDetailsMain {
                         case 'A':
                             addPersonDetails.addContactDetails();
                             boolean isDubliCateEntry = addPersonDetails.checkForDuplicateEntry(addDetailsToArryList, addPersonDetails);
-                            if(isDubliCateEntry == false){
+                            if (isDubliCateEntry == false) {
                                 addDetailsToArryList.add(addPersonDetails);
-                            }
-                            else
+                            } else
                                 System.out.println("dublicate entry found skipped Entry");
                             break;
                         case 'E':
@@ -65,25 +64,24 @@ public class ContactDetailsMain {
                     System.out.println("Details are uptodate");
                     break;
                 }
-
             }
             hashTable.put(i, addDetailsToArryList);
             addPersonDetails.writeIntoFile(hashTable);
-            if(hashTable.size() == addressBookLimit ){
-                System.out.println("Do you wnat to search the persons who belong to this state or city y :- yes N :- no " );
+            if (hashTable.size() == addressBookLimit) {
+                System.out.println("Do you wnat to search the persons who belong to this state or city y :- yes N :- no ");
                 char searchAcrossAddressbook = inputCharater();
-                   if(searchAcrossAddressbook == 'y' || searchAcrossAddressbook == 'Y')
-                        addPersonDetails.searchAccrossAddressBook(hashTable);
-                   else
-                       System.out.println("you doesnot want to serch name of person across address book who belong to particular city ");
+                if (searchAcrossAddressbook == 'y' || searchAcrossAddressbook == 'Y')
+                    addPersonDetails.searchAccrossAddressBook(hashTable);
+                else
+                    System.out.println("you doesnot want to serch name of person across address book who belong to particular city ");
             }
             addPersonDetails.sortPersonDetails(hashTable);
             addPersonDetails.sortWithCityAndState(hashTable);
             System.out.println("Reading from file");
             addPersonDetails.readFromFile();
         }
-        for(int i = ONE; i <= hashTable.size(); i++) {
-            System.out.println("Address book "+i);
+        for (int i = ONE; i <= hashTable.size(); i++) {
+            System.out.println("Address book " + i);
             System.out.println(hashTable.get(i));
         }
 
