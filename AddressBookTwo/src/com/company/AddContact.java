@@ -121,18 +121,6 @@ public class AddContact extends PersonDetail {
     }
 
     public void searchAccrossAddressBook(Hashtable <Integer, ArrayList<AddContact>> dictionary) {
-        /*System.out.println("enter state name to search person");
-        String stateName = scanData.nextLine();
-        int countOfPerson = 0;
-        for (int hastableVariable = 1; hastableVariable <= dictionary.size(); hastableVariable++ )
-            for(int arryListVariable = 0; arryListVariable < dictionary.get(hastableVariable).size(); arryListVariable++ ){
-                if(dictionary.get(hastableVariable).get(arryListVariable).getState().equalsIgnoreCase(stateName) ){
-                    System.out.print("State : "+dictionary.get(hastableVariable).get(arryListVariable).getState());
-                    System.out.println("Name : "+dictionary.g net(hastableVariable).get(arryListVariable).getFirstName());
-                    countOfPerson++;
-                }
-            }
-        System.out.println("the count of person respected state or city "+countOfPerson);*/
        int totalCount = 0;
         System.out.println("enter the nane of city or State");
         String stateOrCity = scanData.nextLine();
@@ -160,25 +148,27 @@ public class AddContact extends PersonDetail {
             System.out.println(hashtableCopy.get(i).stream().sorted(Comparator.comparing(AddContact::getCity).thenComparing(AddContact::getState)).collect(Collectors.toList()));
     }
 
-    public void fileOperation(Hashtable<Integer, ArrayList<AddContact>> hashtableCopy) throws IOException, ClassNotFoundException {
-        try{
-            System.out.println("Creating File/Object output stream...");
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Admin\\IdeaProjects\\AddressBookTwo\\fil1.txt");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            System.out.println("Writing Hashtable Object...");
-            out.writeObject(hashtableCopy);
-            System.out.println("Closing all output streams...\n" );
-            out.close();
-            fileOut.close();
+    public void writeIntoFile(Hashtable<Integer, ArrayList<AddContact>> hashtableCopy) throws IOException, ClassNotFoundException {
+            try {
+                FileWriter fileWriter = new FileWriter("IOoperation.txt");
+                String stream = String.valueOf(hashtableCopy);
+                fileWriter.write(stream);
+                fileWriter.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        catch(FileNotFoundException e){
-            e.printStackTrace();
+        public static void readFromFile() {
+            try {
+                FileReader fileReader = new FileReader("IOoperation.txt");
+                int i;
+                while ((i = fileReader.read()) != -1) {
+                    System.out.print((char) i);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-
 }
 
