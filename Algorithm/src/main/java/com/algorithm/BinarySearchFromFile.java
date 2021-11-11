@@ -42,6 +42,7 @@ public class BinarySearchFromFile {
                 return mid;
             }
         }
+        
         return -1;
     }
 }
