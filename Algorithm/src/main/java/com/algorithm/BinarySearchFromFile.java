@@ -7,25 +7,25 @@ import java.util.*;
 public class BinarySearchFromFile {
 
     public static void main(String[] args) throws Exception {
-        List<String> fileArray = new ArrayList<>();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("C:/Users/User/eclipse-workspace/wordlist.txt"));
+        List<String> ArrayForFile = new ArrayList<>();
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("wordlist.txt"));
         String saveLine;
         while ((saveLine = bufferedReader.readLine()) != null) {
-            fileArray.add(saveLine);
+            ArrayForFile.add(saveLine);
         }
         bufferedReader.close();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Key: ");
-        String inputString = scanner.nextLine();
-        // Check if your word exists or not.
+        String searchForString = scanner.nextLine();
+        // checking for word.
         BinarySearchFromFile binarySerchFromFile = new BinarySearchFromFile();
-        Arrays.sort(fileArray.toArray());
-        System.out.println(fileArray);
-        int index = binarySerchFromFile.binarySearchString(fileArray, inputString);
+        Arrays.sort(ArrayForFile.toArray());
+        System.out.println(ArrayForFile);
+        int index = binarySerchFromFile.binarySearchString(ArrayForFile, searchForString);
         if (index == -1) {
-            System.out.println(" word Not found in file:" + inputString);
+            System.out.println(" word Not found in file:" + searchForString);
         } else {
-            System.out.println(" word found in file:" + inputString);
+            System.out.println(" word found in file:" + searchForString);
         }
     }
 
